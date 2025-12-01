@@ -44,7 +44,7 @@ const Hero = () => {
                         magnetStrength={1}
                         scaleOnHover={1.05}
                     >
-                        <div className="bg-[#c53ab5] cursor-pointer mt-10 hover:text-white text-sm font-semibold px-4 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-200">
+                        <div className="bg-[#c53ab5] cursor-pointer mt-10 hover:text-white text-sm font-semibold px-4 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-140 transition-all duration-200">
                             Get Started
                         </div>
                     </Magnet>
