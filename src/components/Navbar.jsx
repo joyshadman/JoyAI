@@ -1,6 +1,6 @@
 import React from "react";
 import CardNav from "./CardNav";
-import logo from "../assets/react.svg";
+import logo from "../assets/JoyAI.png";
 
 const Navbar = () => {
   const items = [

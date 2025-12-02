@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { GoArrowUpRight } from "react-icons/go";
+import { Link } from 'react-router-dom';
+
 
 const CardNav = ({
   logo,
@@ -132,46 +134,44 @@ const CardNav = ({
         style={{ backgroundColor: baseColor, color: "#fff" }}
       >
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
-          
+
           <div
-            className={`hamburger-menu ${
-              isHamburgerOpen ? "open" : ""
-            } group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px]`}
+            className={`hamburger-menu ${isHamburgerOpen ? "open" : ""
+              } group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px]`}
             onClick={toggleMenu}
             aria-label={isExpanded ? "Close menu" : "Open menu"}
             style={{ color: menuColor }}
           >
             <div
-              className={`hamburger-line w-[30px] h-[2px] bg-current transition-all ${
-                isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
-              }`}
+              className={`hamburger-line w-[30px] h-[2px] bg-current transition-all ${isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
+                }`}
             />
             <div
-              className={`hamburger-line w-[30px] h-[2px] bg-current transition-all ${
-                isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
-              }`}
+              className={`hamburger-line w-[30px] h-[2px] bg-current transition-all ${isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
+                }`}
             />
           </div>
+          <Link to="/home" className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
+            <img src={logo} alt={logoAlt} className="logo h-[68px]" />
+          </Link>
 
-          <div className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
-            <img src={logo} alt={logoAlt} className="logo h-[28px]" />
-          </div>
-
-          <button
-            className="card-nav-cta-button hidden md:inline-flex rounded-lg px-4 items-center h-full border border-[#333]"
+          <Link
+            to={window.location.pathname === "/prompt" ? "/home" : "/prompt"}
+            className="card-nav-cta-button hidden md:inline-flex bg-[#FF5CFF] cursor-pointer px-4 py-2 rounded-xl text-white text-base font-semibold tracking-wide shadow-[0px_0px_50px_RGBA(255,92,255,0.6)] hover:shadow-[0px_0px_80px_RGBA(255,92,255,0.8)] hover:scale-105 transition-all duration-300"
             style={{
               backgroundColor: buttonBgColor,
               color: buttonTextColor,
             }}
           >
-            Get Started
-          </button>
+            {window.location.pathname === "/prompt" ? "Home" : "Get Started"}
+          </Link>
+
+
         </div>
 
         <div
-          className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col gap-2 ${
-            isExpanded ? "visible" : "invisible"
-          } md:flex-row md:items-end`}
+          className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col gap-2 ${isExpanded ? "visible" : "invisible"
+            } md:flex-row md:items-end`}
         >
           {(items || []).map((item, idx) => (
             <div

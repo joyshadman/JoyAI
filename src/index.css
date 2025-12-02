@@ -1,1 +1,57 @@
 @import "tailwindcss";
+
+/* Custom slider styling */
+.slider-neon {
+  -webkit-appearance: none;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #2b132b, #FF5CFF);
+  outline: none;
+}
+
+.slider-neon::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #FF5CFF;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 0 15px rgba(255, 92, 255, 0.8);
+}
+
+.slider-neon::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #FF5CFF;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 0 15px rgba(255, 92, 255, 0.8);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { 
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-scaleUp {
+  animation: scaleUp 0.3s ease-out;
+}
