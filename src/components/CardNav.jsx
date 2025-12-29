@@ -1,8 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { GoArrowUpRight } from "react-icons/go";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 const CardNav = ({
   logo,
@@ -10,7 +9,7 @@ const CardNav = ({
   items,
   className = "",
   ease = "power3.out",
-  baseColor = "#0D0D0D", // DARK THEME BASE
+  baseColor = "#0D0D0D",
   menuColor = "#fff",
   buttonBgColor = "#1f1f1f",
   buttonTextColor = "#fff",
@@ -127,34 +126,44 @@ const CardNav = ({
   };
 
   return (
-    <div className="card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-[99] top-[1.2em] md:top-[2em]">
+    <div
+      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-[99] top-[1.2em] md:top-[2em] ${className}`}
+    >
       <nav
         ref={navRef}
         className={`card-nav ${isExpanded ? "open" : ""} block h-[60px] p-0 rounded-xl shadow-lg relative overflow-hidden`}
         style={{ backgroundColor: baseColor, color: "#fff" }}
       >
+        {/* Top Bar */}
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
-
+          {/* Hamburger */}
           <div
-            className={`hamburger-menu ${isHamburgerOpen ? "open" : ""
-              } group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px]`}
+            className={`hamburger-menu ${isHamburgerOpen ? "open" : ""} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px]`}
             onClick={toggleMenu}
             aria-label={isExpanded ? "Close menu" : "Open menu"}
             style={{ color: menuColor }}
           >
             <div
-              className={`hamburger-line w-[30px] h-[2px] bg-current transition-all ${isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
-                }`}
+              className={`hamburger-line w-[30px] h-[2px] bg-current transition-all ${
+                isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
+              }`}
             />
             <div
-              className={`hamburger-line w-[30px] h-[2px] bg-current transition-all ${isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
-                }`}
+              className={`hamburger-line w-[30px] h-[2px] bg-current transition-all ${
+                isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
+              }`}
             />
           </div>
-          <Link to="/home" className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
+
+          {/* Logo */}
+          <Link
+            to="/home"
+            className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2"
+          >
             <img src={logo} alt={logoAlt} className="logo h-[68px]" />
           </Link>
 
+          {/* CTA Button */}
           <Link
             to={window.location.pathname === "/prompt" ? "/home" : "/prompt"}
             className="card-nav-cta-button hidden md:inline-flex bg-[#FF5CFF] cursor-pointer px-4 py-2 rounded-xl text-white text-base font-semibold tracking-wide shadow-[0px_0px_50px_RGBA(255,92,255,0.6)] hover:shadow-[0px_0px_80px_RGBA(255,92,255,0.8)] hover:scale-105 transition-all duration-300"
@@ -165,13 +174,13 @@ const CardNav = ({
           >
             {window.location.pathname === "/prompt" ? "Home" : "Get Started"}
           </Link>
-
-
         </div>
 
+        {/* Card Items */}
         <div
-          className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col gap-2 ${isExpanded ? "visible" : "invisible"
-            } md:flex-row md:items-end`}
+          className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col gap-2 ${
+            isExpanded ? "visible" : "invisible"
+          } md:flex-row md:items-end`}
         >
           {(items || []).map((item, idx) => (
             <div
@@ -183,20 +192,19 @@ const CardNav = ({
                 color: item.textColor || "#fff",
               }}
             >
-              <div className="text-lg md:text-xl font-semibold">
-                {item.label}
-              </div>
+              <div className="text-lg md:text-xl font-semibold">{item.label}</div>
 
               <div className="mt-auto flex flex-col gap-1">
                 {item.links?.map((lnk, i) => (
-                  <a
+                  <Link
                     key={i}
-                    href={lnk.href}
+                    to={lnk.to}
+                    aria-label={lnk.ariaLabel}
                     className="flex items-center gap-1 text-sm opacity-90 hover:opacity-100 transition"
                   >
                     <GoArrowUpRight />
                     {lnk.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
