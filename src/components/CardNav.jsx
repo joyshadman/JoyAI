@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { GoArrowUpRight } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const CardNav = ({
   logo,
@@ -14,6 +14,7 @@ const CardNav = ({
   buttonBgColor = "#1f1f1f",
   buttonTextColor = "#fff",
 }) => {
+  const location = useLocation();
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const navRef = useRef(null);
@@ -165,14 +166,14 @@ const CardNav = ({
 
           {/* CTA Button */}
           <Link
-            to={window.location.pathname === "/prompt" ? "/home" : "/prompt"}
+            to={location.pathname === "/prompt" || location.pathname === "/promptpage" ? "/home" : "/prompt"}
             className="card-nav-cta-button hidden md:inline-flex bg-[#FF5CFF] cursor-pointer px-4 py-2 rounded-xl text-white text-base font-semibold tracking-wide shadow-[0px_0px_50px_RGBA(255,92,255,0.6)] hover:shadow-[0px_0px_80px_RGBA(255,92,255,0.8)] hover:scale-105 transition-all duration-300"
             style={{
               backgroundColor: buttonBgColor,
               color: buttonTextColor,
             }}
           >
-            {window.location.pathname === "/prompt" ? "Home" : "Get Started"}
+            {location.pathname === "/prompt" || location.pathname === "/promptpage" ? "Home" : "Get Started"}
           </Link>
         </div>
 

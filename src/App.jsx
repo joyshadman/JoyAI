@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Homepage from './page/Homepage.jsx'
 import Promptpage from './page/Promptpage.jsx'
-import TextPage from './page/textpage.jsx'
+import TextPage from './page/TextPage.jsx'
 
 function App() {
   return (

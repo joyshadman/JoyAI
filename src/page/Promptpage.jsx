@@ -99,12 +99,18 @@ const Promptpage = () => {
         }),
       });
       
+      // Check if response is ok
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('❌ API response error:', response.status, errorText);
+        throw new Error(`API error: ${response.status} - ${errorText.substring(0, 100)}`);
+      }
+
       const data = await response.json();
       console.log('📦 FULL API RESPONSE:', data); // Log everything!
       
-      // Check if API call was successful
       if (!data.success) {
-        throw new Error(data.error || 'API returned failure');
+        throw new Error(data.error || data.note || 'API returned failure');
       }
       
       // ✅ FIXED: Check if image exists

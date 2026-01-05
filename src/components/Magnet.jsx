@@ -9,6 +9,7 @@ const Magnet = ({
   inactiveTransition = 'transform 0.5s ease-in-out',
   wrapperClassName = '',
   innerClassName = '',
+  scaleOnHover,
   ...props
 }) => {
   const [isActive, setIsActive] = useState(false);
@@ -61,7 +62,7 @@ const Magnet = ({
       <div
         className={innerClassName}
         style={{
-          transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+          transform: `translate3d(${position.x}px, ${position.y}px, 0) scale(${isActive && scaleOnHover ? scaleOnHover : 1})`,
           transition: transitionStyle,
           willChange: 'transform'
         }}
